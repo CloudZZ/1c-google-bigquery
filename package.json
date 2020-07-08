@@ -1,0 +1,27 @@
+{
+  "name": "1c-google-bigquery",
+  "version": "1.0.0",
+  "description": "1c google bigquery",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "firebase deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudZZ/1c-google-bigquery.git"
+  },
+  "keywords": [
+    "1c",
+    "bigquery"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CloudZZ/1c-google-bigquery/issues"
+  },
+  "homepage": "https://github.com/CloudZZ/1c-google-bigquery#readme",
+  "dependencies": {
+    "firebase-tools": "^8.4.2"
+  }
+}

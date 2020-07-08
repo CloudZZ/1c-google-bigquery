@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "14"
+cache: npm
+script:
+  - echo "Starting travis deployment"
+  - npm run deploy -- --token $FIREBASE_TOKEN
+install:
+  - npm ci
+  - npm ci --prefix functions
+branches:
+  only:
+    - master

@@ -10,11 +10,12 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "8"
+    "node": "10"
   },
   "dependencies": {
     "firebase-admin": "^8.10.0",
-    "firebase-functions": "^3.6.1"
+    "firebase-functions": "^3.6.1",
+    "openssl-nodejs": "github:codevibess/openssl-nodejs#pull/7/head"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
