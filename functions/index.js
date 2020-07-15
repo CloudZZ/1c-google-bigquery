@@ -1,9 +1,5 @@
 const functions = require('firebase-functions');
-const openssl = require('openssl-nodejs')
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+crypto = require('crypto')
 
 exports.sign = functions.https.onRequest((req, res) => {
     if (req.method !== 'POST')
@@ -24,33 +20,21 @@ exports.sign = functions.https.onRequest((req, res) => {
 
     try {
         // 1c command to replace:
-        // КомандаСистемы("openssl dgst -sha256 -sign my.pem < body.txt > sign2",Корень);
-        openssl(['dgst', '-sha256', '-sign',
-            {
-                name: 'my.pem',
-                buffer: Buffer.from(req.body.pem, 'base64')
-            },
-            {
-                name: 'body.txt',
-                buffer: Buffer.from(req.body.body)
-            }
-        ], (err, buffer) => {
-            console.log(err.toString(), buffer.toString(), "err: ", err.toString());
-            if (err.length)
-                return res.status(500).json({
-                    code: '500',
-                    message: 'Internal OpenSSL error: ' + err.toString()
-                });
-            return res.status(200).json({
-                code: '200',
-                message: Buffer.from(buffer.join("")).toString('base64')
-            });
+        // КомандаСистемы("openssl dgst -sha256 -sign my.pem < body.txt | openssl base64 > signed.txt",Корень);
+
+        const signer = crypto.createSign("RSA-SHA256");
+        signer.update(Buffer.from(req.body.body));
+        const sign = signer.sign(Buffer.from(req.body.pem, 'base64'), 'base64');
+        return res.status(200).json({
+            code: '200',
+            message: sign
         });
+
+
     } catch (err) {
         return res.status(500).json({
             code: '500',
             message: 'Internal error: ' + err.toString()
         });
     }
-  return undefined;
 });
