@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/CloudZZ/1c-google-bigquery#readme",
   "dependencies": {
-    "firebase-tools": "^9.23.3"
+    "firebase-tools": "^10.1.1"
   }
 }
